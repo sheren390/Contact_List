@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+        <title>Document</title>
+    </head>
+    <!-- <style>
+        .image1{
+            float: left;
+        }
+        body{
+            width: 30%;
+            text-align: center;
+            margin-left: 500px;
+            
+        }
+        .phoneImage{
+            float: right;
+            size: 5px;
+        }
+        .text{
+            text-align: center;
+        }
+        
+    </style> -->
+
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <section data-role="page" id="firstPage">
+        <header data-role="header" >
+            <!-- <a href="#thirdPage" data-transition=
+                "flip">Add</a> -->
+            <a href="#thirdPage"
+                class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-inline" id="add">Add</a>
+
+            <!-- <button class="btn" value="Add" > Add</button> -->
+            <h1>Content List</h1>
+
+        </header>
+        <div>
+            <input type="text" class="filterText" value="Filter Items">
+        </div>
+        <article data-role="content">
+            <!-- <ul data-role="listview" data-inset="true">
+                <li><a href="#secondPage">
+                        <img src="./f.PNG">
+                        <h2>Haidi</h2>
+                        <a href="#" class="ui-btn ui-btn-inline ui-icon-phone ui-btn-icon-right">Right</a>
+                    </a>
+                </li>
+                <li><a href="#secondPage">
+                        <img src="./f.PNG">
+                        <h2>Shereen</h2>
+                        <a href="#" class="ui-btn ui-btn-inline ui-icon-phone ui-btn-icon-right">Right</a>
+                    </a>
+                </li>
+                <li><a href="#secondPage">
+                        <img src="./f.PNG">
+                        <h2>Mariam</h2>
+                        <a href="#" class="ui-btn ui-btn-inline ui-icon-phone ui-btn-icon-right">Right</a>
+
+                </li>
+            </ul> -->
+
+            <ul data-role="listview" data-inset="true" id="displayContacts"></ul>
+
+        </article>
+
+        <footer data-role="footer">
+            <h1>Contact List</h1>
+        </footer>
+
+    </section>
+
+    <section data-role="page" id="secondPage">
+        <header data-role="header" id="header" data-add-back-btn="true" >
+            <a href="#firstPage" data-transition="flip">Back</a>
+           
+        </header>
+        <div id="diplayedName" text-align="center" ></div>
+        <article data-role="content">
+            <div>
+                <img src="./female.jpeg" alt="left arrow" id="imgf" class="image1" />
+                <h5 class="text">
+            </div>
+            <div class="icons">
+                <!-- <button>
+                <span class="ui-icon ui-icon-trash">
+                    
+                </span>
+            </button> -->
+                <!-- <button class="btn"><i class="fa fa-trash"></i></button> -->
+                <div id="contactInfo"></div>
+                <div id="name"></div>
+                
+                <a href="#popupMenu" data-rel="popup" data-transition="slideup"
+                    class="ui-btn ui-corner-all ui-shadow ui-btn-icon-left ui-icon-delete ui-btn-a ui-btn-inline">Delete</a>
+                  
+                <div data-role="popup" id="popupMenu" data-theme="b">
+                    <p>you want to delete this contact?</p>
+                    <button>Cancel</button>
+                    <button id="delete">Delete</button>
+                </div>
+                
+                <a href="#thirdPage" data-rel="page" data-transition="slideup" 
+                    class="ui-btn ui-corner-all ui-shadow ui-btn-icon-left ui-icon-edit ui-btn-a ui-btn-inline" onclick="updateContact()">Edit</a>
+               
+                <a href="#popupMenu" data-rel="popup" data-transition="slideup"
+                    class="ui-btn ui-corner-all ui-shadow ui-btn-icon-left ui-icon-phone ui-btn-a ui-btn-inline">Call</a>
+                       
+            </div>
+        </article>
+        <footer data-role="footer">
+            <h1>Contact List</h1>
+        </footer>
+
+    </section>
+
+
+    <section data-role="page" id="thirdPage">
+        <header data-role="header" data-add-back-btn="true">
+            <!-- <a href="#firstPage" data-transition="flip">Back</a> -->
+            <h1> New contact</h1>
+        </header>
+
+        <article data-role="content">
+            <h1> Add New contact</h1>
+            <form id="edit" onsubmit="return addNewContact()">
+                <div>
+                    <label>Name</label>
+                    <input type="text" placeholder="name" id="nameEdit" required>
+                </div>
+    
+                <div>
+                    <label>Phone</label>
+                    <input type="tel" id="phoneEdit"   required>
+                </div>
+    
+                <div>
+                    <label>Email</label>
+                    <input type="email" id="emailEdit">
+                </div>
+    
+                <div>
+                    <label><input type="radio" name="gender" id="male" checked>Male</label>
+                    <label><input type="radio" name="gender" id="female">Female</label>
+                </div>
+            
+    
+                <div id ="btn1">
+                    <input type="submit" value="Save"  id="submit">
+                </div>
+                <div id="btn2">
+                    <input type="button" value="Update"  id="update">
+                </div>  
+                <div id="btn3">
+                    <input type="reset" value="Cancel">
+                </div>
+                </form>
+            <!-- <form id="edit" onsubmit=" return addNewContact()">
+            <div>
+                <label>Name</label>
+                <input type="text" placeholder="name" id="nameEdit" required>
+            </div>
+
+            <div>
+                <label>Phone</label>
+                <input type="tel" id="phoneEdit"  pattern="[0-9]{11}" required>
+            </div>
+
+            <div>
+                <label>Email</label>
+                <input type="email" id="emailEdit"  pattern=".+@globex\.com" required>
+            </div>
+
+            <div>
+                <label><input type="radio" name="gender" id="male" >Male</label>
+                <label><input type="radio" name="gender" id="female">Female</label>
+            </div>
+       
+
+            <div id="btn1">
+                <input type="submit" value="Save" onclick="addNewContact()" id="submit">
+               
+            </div>
+            <div id="btn2">
+                <input type="button" value="Update"  id="update">
+                
+            </div>
+            <div id="btn3">
+                <input type="reset" value="Cancel">
+            </div>
+        </form> -->
+        </article>
+
+        <footer data-role="footer">
+            <h1> Contact List</h1>
+        </footer>
+    </section>
+
+    <section data-role="page" id="fourthPage" >
+        <div>
+            <h3>Delete Contact?</h3>
+            <input type="submit" value="Cancel">
+            <input type="submit" value="Delete">
+
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
